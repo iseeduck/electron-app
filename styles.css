@@ -1,0 +1,30 @@
+div{
+    content:"";
+}
+
+.container {
+    border: 3px dashed #5a925a;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    background-color: #876f4f;
+    
+}
+
+.col {
+    display: inherit;
+    flex-direction: column;
+    height: 100%;
+}
+
+.col:hover{
+    background-color: #48ff00;
+}
+
+.cell{
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #8a6a41;
+}
