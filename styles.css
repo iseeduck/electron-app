@@ -3,11 +3,11 @@ div{
 }
 
 .container {
-    border: 3px dashed #5a925a;
+    border: 3px dashed #6e946e;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-    background-color: #876f4f;
+    background-color: #8a5f28;
     
 }
 
@@ -18,7 +18,7 @@ div{
 }
 
 .col:hover{
-    background-color: #48ff00;
+    background-color: #00ff2a;
 }
 
 .cell{
@@ -26,5 +26,5 @@ div{
     height: 50px;
     border-radius: 3px;
     cursor: pointer;
-    background-color: #8a6a41;
+    background-color: #c99c62;
 }
