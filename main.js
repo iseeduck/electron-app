@@ -12,9 +12,15 @@ const createWindow = () => {
 app.whenReady().then(() => {
   createWindow()
 })
+// variables
 const cols = 10
 const rows = 10
-const fieldDiv = document.getElementById
+let seeds = []; // makes queue of seeds
+const fieldDiv = document.getElementById('field');
+const moneyDisplay = document.getElementById('money-display');
+function updateMoney(){
+  moneyDisplay.textContent = `Money: $$(Money)`;
+}
 
 function renderField(){
   fieldDiv.innerHTML = ''; //clears existing grid
@@ -40,6 +46,20 @@ function renderField(){
           cellDiv.appendChild(img);
         }
       }
-    }
+      // plants a seed when you click an empty cell 
+      cellDiv.onclick = () => {
+        if (!field[col][row] && seeds.length > 0){
+          field[col][row] = seeds.pop();
+          renderField();
+        }
+      };
+    
+    colDiv.appendChild(cellDiv);
+  }
+  fieldDiv.apendChild(colDiv);
   }
 }
+
+//
+renderField();
+updateMoney();
