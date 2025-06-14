@@ -2,23 +2,42 @@ div{
     content:"";
 }
 
-.container {
-    border: 3px dashed #6e946e;
+#container {
+    padding:20px;
+}
+
+#field{
     display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    background-color: #8a5f28;
-    
+    flex-wrap:nowrap;
+    justify-content: center;
+    /* centers columns horizontally */
+    align-items: center;
+    /* vertically center aligns columns */
+    width: 100%;
+    max-width: 700px;
+    /* slightly wider for brrreathing room */
+    margin: 40px auto;
+    /* vertical and horizontal centering */
+    gap: 6px;
+    /* more visible space between columns */
+    padding: 24px;
+    background-color: saddlebrown;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); 
 }
 
 .col {
-    display: inherit;
+    display: flex;
     flex-direction: column;
-    height: 100%;
+    gap: 6px;
+    flex: 1;
+    /* never be past 1-% width no matter screen chonk */
+    max-width: 10%;
 }
-
-.col:hover{
-    background-color: #51ff00;
+/* makes cell pop */
+.cell:hover{
+    transform: scale(1.05);
+     box-shadow: 0 0 4px rgb(0, 255, 55); 
 }
 
 .cell{
@@ -27,4 +46,6 @@ div{
     border-radius: 3px;
     cursor: pointer;
     background-color: #c99c62;
+    position: relative;
+    transition: transform 0.15 ease, box-shadow 0.15 ease;
 }
