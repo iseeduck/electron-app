@@ -14,6 +14,10 @@ const field = Array.from({length: cols}, () => Array.from({length: rows}, () => 
 function updateMoney(){
   moneyDisplay.textContent = `Money: $${money}`;
 }
+//toggles shop menu visibility
+function toggleShop() {
+  document.getElementById('shop-menu').classList.toggle('hidden');
+}
 
 function renderField(){
   fieldDiv.innerHTML = ''; //clears existing grid

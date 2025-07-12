@@ -6,6 +6,24 @@ div{
     padding:20px;
 }
 
+#shop-menu {
+/*START HERE!!*/
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+#shop-menu button {
+    display: block;
+    margin: 8px 0;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+
 #field{
     display: flex;
     flex-wrap:nowrap;
