@@ -19,6 +19,14 @@ function toggleShop() {
   document.getElementById('shop-menu').classList.toggle('hidden');
 }
 
+function buySeed(type) {
+    if (money >= 10) {
+      seeds.push({type, stage: 0});
+      money -= 10;
+      updateMoney();
+    }
+  }
+
 function renderField(){
   fieldDiv.innerHTML = ''; //clears existing grid
 
