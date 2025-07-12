@@ -24,6 +24,26 @@ div{
     border-radius: 10px;
 }
 
+#sell-stand {
+    background: url(`sellstand.png`) no-repeat center;
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+#sell-menu {
+    position: absolute;
+    top: 130px;
+    left: 180px;
+    background: #f0fff0;
+    border: 2px solid 228B22;
+    padding: 15px;
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+}
 #field{
     display: flex;
     flex-wrap:nowrap;
