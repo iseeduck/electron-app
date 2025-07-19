@@ -4,7 +4,12 @@ const rows = 10;
 
 let money = 3830;
 let seeds = []; // makes queue of seeds
-
+let inventory = {
+  grapes: 0,
+  strawberries: 0,
+  lettuce: 0,
+  tomato: 0
+};
 
 const fieldDiv = document.getElementById('field');
 const moneyDisplay = document.getElementById('money-display');
@@ -27,6 +32,30 @@ function buySeed(type) {
     }
   }
 
+  function updateInventoryUI(){
+    const inv = inventory;
+    document.getElementById('inventory-display').textContent = `Inventory: Grape(s): ${inv.grape} | Lettuce: ${inv.lettuce} | Tomato(es): ${inv.tomato} | Strawberries: ${inv.strawberry}`;
+
+  }
+
+function renderSellOptions(){
+  const container = document.G=getElementById('sell-options');
+  container.innerHTML = '';
+  for (const crop in inventory) {
+    const amunt = inventory[crop];
+    if (amount > 0) {
+      const btn = document.createElement('button');
+      btn.textContent = 'Sell 1 ${crop} ($5)';
+      btn.onclick = () =>{
+        inventory[crop] --;
+        money += 5;
+        updateMoney();
+        updateInventoryUI();
+        renderSellOptioins(); //refreshes the ui
+      }
+    }
+  }
+}
 function renderField(){
   fieldDiv.innerHTML = ''; //clears existing grid
 
