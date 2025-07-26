@@ -9,7 +9,14 @@ div{
 #shop-menu {
 /*START HERE!!*/
 }
-
+#farm-stand {
+    background-image: url("/images/seed_shop.png") no-repeat center;
+    width: 120px;
+    height: 120px;
+    background-size: contain;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
 
 .hidden {
     display: none;

@@ -53,6 +53,7 @@ function renderSellOptions(){
         updateInventoryUI();
         renderSellOptioins(); //refreshes the ui
       }
+      
     }
   }
 }
