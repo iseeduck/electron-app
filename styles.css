@@ -7,12 +7,42 @@ div{
 }
 
 #shop-menu {
-/*START HERE!!*/
+    position: absolute;
+    top: 130px;
+    left: 20px;
+    background: #fff8dc;
+    border: 2px solid #654321;
+    padding: 15px;
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    border-radius: 10px;
 }
+
+#shop-menu button{
+    display: block;
+    margin: 8px 0;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+    position: relative;
+}
+
 #farm-stand {
-    background-image: url("/images/seed_shop.png") no-repeat center;
-    width: 120px;
-    height: 120px;
+    content:"";
+    background: url('images/seed_shop.png') no-repeat center;
+    width: 200px;
+    height: 190px;
     background-size: contain;
     cursor: pointer;
     margin-bottom: 10px;
@@ -23,16 +53,17 @@ div{
 }
 
 
-#shop-menu button {
-    display: block;
-    margin: 8px 0;
-    font-size: 16px;
-    padding: 6px 12px;
-    border-radius: 10px;
+#center-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    text-align: center;
 }
 
 #sell-stand {
-    background: url(`sellstand.png`) no-repeat center;
+    background: url('images/tomato seed.png') no-repeat center;
     width: 120px;
     height: 120px;
     background-size: contain;

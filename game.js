@@ -20,9 +20,17 @@ function updateMoney(){
   moneyDisplay.textContent = `Money: $${money}`;
 }
 //toggles shop menu visibility
-function toggleShop() {
-  document.getElementById('shop-menu').classList.toggle('hidden');
-}
+ document.addEventListener('DOMContentLoaded', function() {
+        var myButton = document.getElementById('farm-stand'); // Assign an ID to your button
+        if (myButton) {
+            myButton.addEventListener('click', function() {
+                // Your event handler logic here
+                document.getElementById('shop-menu').classList.toggle('hidden');
+                console.log('Button clicked!');
+            });
+        }
+    });
+
 
 function buySeed(type) {
     if (money >= 10) {
