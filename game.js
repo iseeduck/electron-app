@@ -2,7 +2,7 @@
 const cols = 10;
 const rows = 10;
 
-let money = 3830;
+let money = 100;
 let seeds = []; // makes queue of seeds
 let inventory = {
   grapes: 0,
@@ -19,23 +19,57 @@ const field = Array.from({length: cols}, () => Array.from({length: rows}, () => 
 function updateMoney(){
   moneyDisplay.textContent = `Money: $${money}`;
 }
+
+  let isOpen = false;
 //toggles shop menu visibility
  document.addEventListener('DOMContentLoaded', function() {
+
         var myButton = document.getElementById('farm-stand'); // Assign an ID to your button
         if (myButton) {
             myButton.addEventListener('click', function() {
                 // Your event handler logic here
                 document.getElementById('shop-menu').classList.toggle('hidden');
                 console.log('Button clicked!');
+                isOpen = !isOpen;
             });
         }
     });
+  
+    var myButton = document.getElementById('tomato');
+    myButton.addEventListener('click', function(){
+       // Assign an ID to your button
+      if (myButton && isOpen) {
+          myButton.addEventListener('click', buySeed('tomato'));
+      }
+    })
+      
+  // document.addEventListener('click', function() {
+  //       var myButton = document.getElementById('strawberry'); // Assign an ID to your button
+  //       if (myButton) {
+  //           myButton.addEventListener('click', buySeed('strawberries'));
+  //       }
+  //   });
+  // document.addEventListener('DOMContentLoaded', function() {
+  //       var myButton = document.getElementById('grapes'); // Assign an ID to your button
+  //       if (myButton) {
+  //           myButton.addEventListener('click', buySeed('grapes'));
+  //       }
+  //   });
+  // document.addEventListener('DOMContentLoaded', function() {
+  //       var myButton = document.getElementById('lettuce'); // Assign an ID to your button
+  //       if (myButton) {
+  //           myButton.addEventListener('click', buySeed('lettuce'));
+  //       }
+  //   });
+
+
 
 
 function buySeed(type) {
     if (money >= 10) {
       seeds.push({type, stage: 0});
       money -= 10;
+      console.log("seed was bought");
       updateMoney();
     }
   }
