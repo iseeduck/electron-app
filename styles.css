@@ -52,6 +52,12 @@ div{
     display: none;
 }
 
+#menus-wrapper{
+display: flex;
+justify-content: center;
+gap: 20px;
+flex-wrap: wrap;
+}
 
 #center-info {
     display: flex;
@@ -61,7 +67,18 @@ div{
     flex-grow: 1;
     text-align: center;
 }
-
+.menu {
+    border: 2px solid #40fd06;
+    background-color: #fff7e6;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+    transition: all 0.3s ease;
+    width: 90%;
+    max-width: 300px;
+    text-align: center;
+}
 #sell-stand {
     background: url('images/seed_shop.png') no-repeat center;
     width: 200px;
@@ -75,7 +92,7 @@ div{
     position: absolute;
     top: 130px;
     left: 180px;
-    background: #f0fff0;
+    background: #40fd06;
     border: 2px solid 228B22;
     padding: 15px;
     z-index: 5;

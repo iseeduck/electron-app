@@ -26,19 +26,24 @@
           <div id="inventory-display"> Inventory: Tomatoes 0 | Grapes 0| Strawberries 0| Lettuce 0</div>
       </div>
 
-       <div id="sell-stand" onclick="toggleSellMenu()"></div>
+       <div id="sell-stand"></div>
       <!-- creates shop menu (currently invisible) -->
-      <div id ="shop-menu" class = "hidden">
+      <div id="menus-wrapper">
+        <div id ="shop-menu" class = "hidden">
         <h3>Buy Seeds!🌱</h3>
         <button id="tomato">Tomatoes $10</button>
         <button id = "strawberry">Strawberries $10</button>
         <button id = "grapes"> Grapes $10</button>
         <button id = "lettuce">Lettuce $10</button>
       </div>
-       
-          <div id ="sell-options"></div>
+       <div id = "sell-menu" class="menu hidden">
+        <h2>SELL NOWWWW</h2>
+        <div id ="sell-options"></div>
+       </div>
+          
       </div>
       
+      </div>
       <!-- field container -->
       <div id="field"></div>
     </div>

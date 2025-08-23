@@ -35,32 +35,52 @@ function updateMoney(){
         }
     });
   
+  let uOpen = false;
+   document.addEventListener('DOMContentLoaded', function() {
+
+        var myButton = document.getElementById('sell-stand'); // Assign an ID to your button
+        if (myButton) {
+            myButton.addEventListener('click', function() {
+                // Your event handler logic here
+                document.getElementById('sell-options').classList.toggle('hidden');
+                console.log('Button clicked!');
+                uOpen = !uOpen;
+                renderSellOptions();
+            });
+        }
+    });
+
+
     var myButton = document.getElementById('tomato');
     myButton.addEventListener('click', function(){
        // Assign an ID to your button
       if (myButton && isOpen) {
           myButton.addEventListener('click', buySeed('tomato'));
       }
+    });
+    var myButton = document.getElementById('strawberry');
+      myButton.addEventListener('click', function(){
+       // Assign an ID to your button
+      if (myButton && isOpen) {
+          myButton.addEventListener('click', buySeed('strawberries'));
+      }
+    });
+    var myButton = document.getElementById('grapes');
+    myButton.addEventListener('click', function(){
+       // Assign an ID to your button
+      if (myButton && isOpen) {
+          myButton.addEventListener('click', buySeed('grapes'));
+      }
+    })
+    var myButton = document.getElementById('lettuce');
+    myButton.addEventListener('click', function(){
+       // Assign an ID to your button
+      if (myButton && isOpen) {
+          myButton.addEventListener('click', buySeed('lettuce'));
+      }
     })
       
-  // document.addEventListener('click', function() {
-  //       var myButton = document.getElementById('strawberry'); // Assign an ID to your button
-  //       if (myButton) {
-  //           myButton.addEventListener('click', buySeed('strawberries'));
-  //       }
-  //   });
-  // document.addEventListener('DOMContentLoaded', function() {
-  //       var myButton = document.getElementById('grapes'); // Assign an ID to your button
-  //       if (myButton) {
-  //           myButton.addEventListener('click', buySeed('grapes'));
-  //       }
-  //   });
-  // document.addEventListener('DOMContentLoaded', function() {
-  //       var myButton = document.getElementById('lettuce'); // Assign an ID to your button
-  //       if (myButton) {
-  //           myButton.addEventListener('click', buySeed('lettuce'));
-  //       }
-  //   });
+
 
 
 
@@ -81,10 +101,10 @@ function buySeed(type) {
   }
 
 function renderSellOptions(){
-  const container = document.G=getElementById('sell-options');
+  const container = document.getElementById('sell-options');
   container.innerHTML = '';
   for (const crop in inventory) {
-    const amunt = inventory[crop];
+    const amount = inventory[crop];
     if (amount > 0) {
       const btn = document.createElement('button');
       btn.textContent = 'Sell 1 ${crop} ($5)';
@@ -95,8 +115,12 @@ function renderSellOptions(){
         updateInventoryUI();
         renderSellOptioins(); //refreshes the ui
       }
-      
     }
+    else {
+        const label = document.createElement('div');
+        label.textContent = `no ${crop} to sell`;
+        container.appendChild(label);
+      }
   }
 }
 function renderField(){
