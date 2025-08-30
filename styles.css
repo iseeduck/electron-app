@@ -8,20 +8,21 @@ div{
 
 #shop-menu {
     position: absolute;
-    top: 130px;
-    left: 20px;
+    top: 200px;
+    left: 50px;
     background: #fff8dc;
     border: 2px solid #654321;
     padding: 15px;
     z-index: 5;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-size: 16px;
+    justify-content: center;
     border-radius: 10px;
 }
 
 #shop-menu button{
     display: block;
-    margin: 8px 0;
+    margin: 10px auto;
     font-size: 16px;
     padding: 6px 12px;
     border-radius: 10px;
@@ -68,15 +69,17 @@ flex-wrap: wrap;
     text-align: center;
 }
 .menu {
-    border: 2px solid #40fd06;
-    background-color: #fff7e6;
+    border: 2px solid #000000;
+    background-color: rgb(255, 242, 229);
     padding: 15px;
     border-radius: 12px;
     box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
     margin: 10px auto;
     transition: all 0.3s ease;
-    width: 90%;
+    width: auto;
     max-width: 300px;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
 #sell-stand {
@@ -90,9 +93,10 @@ flex-wrap: wrap;
 
 #sell-menu {
     position: absolute;
-    top: 130px;
-    left: 180px;
-    background: #40fd06;
+    top: 200px;
+    right: 50px;
+    /* width: 50%; */
+    background: rgb(255, 248, 229);
     border: 2px solid 228B22;
     padding: 15px;
     z-index: 5;

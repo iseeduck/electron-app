@@ -42,7 +42,7 @@ function updateMoney(){
         if (myButton) {
             myButton.addEventListener('click', function() {
                 // Your event handler logic here
-                document.getElementById('sell-options').classList.toggle('hidden');
+                document.getElementById('sell-menu').classList.toggle('hidden');
                 console.log('Button clicked!');
                 uOpen = !uOpen;
                 renderSellOptions();
