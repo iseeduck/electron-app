@@ -141,19 +141,51 @@ function renderField(){
           cellDiv.classList.add('fire');
         }
         else {
+        // THESE IMAGES NEED TO BE NAMED USING THIS FORMAT plants/{type}-{stage}.png
           const img = document.createElement('img');
-          img.src = 
-          'plant/${plant.type}-${plant.stage}.png';
+          img.src = 'plant/${plant.type}_${plant.stage}.png';
+          img.onerror = () => {
+            img.src = 'images/plants/sapling_allplants.png';
+          };
           cellDiv.appendChild(img);
         }
       }
       // plants a seed when you click an empty cell 
       cellDiv.onclick = () => {
-        if (!field[col][row] && seeds.length > 0){
+        const plot = field[col][row];
+
+        const isBurnedCooling = plot && plot.burned && plot.cooldown > 0;
+        // HARVEST IF PLANT IS READY
+        if (plot && plot.stage == 3 && !plot.fire){
+          inventory[plot.type]++;
+          field[col][row = null];
+          renderField();
+          updateInventoryUI();
+          return;
+        }
+        // PLANT IF EMPTY OR BURND
+        if (!isBurnedCooling && (!plot || plot.burned) && seeds.length > 0){
           field[col][row] = seeds.pop();
           renderField();
         }
       };
+
+
+      if (plant){
+        if (plant.fire) {
+          cellDiv.classList.add('fire');
+        } else if (plant.burned) {
+          cellDiv.classList.add('burned');
+          if (plant.cooldown > 0) {
+            cellDiv.classList.add('cooling');
+          }
+        } else {
+          const img = document.createElement('img');
+          img.src = `images/plants/${plant.type}-${plant.stage}.png`;
+          img.alt = plant.type;
+          cellDiv.appendChild(img);
+        }
+      }
     
     colDiv.appendChild(cellDiv);
   }
