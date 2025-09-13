@@ -193,6 +193,56 @@ function renderField(){
   }
 }
 
+function growPlants() {
+  for (let col = 0; col <cols; col++) {
+    for (let row = 0; row <rows; row++) {
+      const plant = field [col][row];
+      if (plant && plant.stage < 2 && !plant.fire) {
+        plant.stage++; //make it grow one
+      }
+    }
+  }
+  renderField();
+}
+//picks place fire
+function spawnFire() {
+  const col = Math.floor(Math.random() * cols);
+  const row = Math.floor(Math.random() * rows);
+  activeFires.push ({col, row, radius: 0, affectedCells: [] }); 
+}
+function growActiveFires(){
+  const nextFires = [];
+  for (const fire of activeFires) {
+    const {col, row, radius, affectedCells} = fire;
+    for (let dx = -radius; dx <= radius; dx++) {
+      for (let dy = -radius; dy <= radius; dy++) {
+        if (Math.abs(dx) + Math.abs(dy) === radius){
+          const x = col +dx;
+          const y = row + dy;
+        
+
+        if (x >= 0 && x < cols && y >= 0 && y < rows) {
+          const plant = field[x][y];
+          if (plant) {
+            plant.fire = true;
+            affectedCells.push({x,y}) // accumulate
+          }
+        }
+      }
+    }
+  }
+    if (radius <4) {
+      nextFires.push ({col, row, radius: radius +1, affectedCells}); // pass it forward
+
+    } else {
+      //after max radius, store full fire aresa to burn
+      burningCells.push({cells: affectedCells, timeLeft: 5});
+    }
+  }
+  activeFires = nextFires;
+  renderField();
+}
+
 //
 renderField();
 updateMoney();
