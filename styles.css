@@ -146,3 +146,20 @@ flex-wrap: wrap;
     position: relative;
     transition: transform 0.15 ease, box-shadow 0.15 ease;
 }
+
+.cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+
+.fire {
+    background-color: red;
+    animation: pulseFire 0.3s ease-in;
+}
+
+@keyframes pulseFire {
+    from {  background: url('images/Fire part one.png') no-repeat center; }
+    to {  background: url('images/fire part two.png') no-repeat center; }
+}

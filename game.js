@@ -181,7 +181,7 @@ function renderField(){
           }
         } else {
           const img = document.createElement('img');
-          img.src = `images/plants/${plant.type}-${plant.stage}.png`;
+          img.src = `images/plants/${plant.type}_${plant.stage}.png`;
           img.alt = plant.type;
           cellDiv.appendChild(img);
         }
