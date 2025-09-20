@@ -243,6 +243,48 @@ function growActiveFires(){
   renderField();
 }
 
+function updateBurningCells() {
+  const stillBurning = [];
+
+  for (const group of burningCells) {
+    group.timeLeft--;
+
+    if (group.timeLeft <= 0) {
+      for (const {x, y} of group.cells) {
+        field[x][y] = { burned: true, cooldown: 5};
+    
+     }
+    }
+
+    else{
+      stillBurning.push(group);
+    }
+  }
+  burningcells = stillBurning;
+  renderField();
+
+}
+
+function updateCooldownCells() {
+  const stillCooling = [];
+
+  for (let col = 0; col < cols; col++) {
+    for (let row = 0; row < rows; row++) {
+      const cell = field[col][row];
+      if (cell && cell.bruned && cell.cooldown > 0) {
+        cell.cooldown--;
+        if (cell.cooldown > 0) {
+          stillCooling.push({ col, row });
+        } else {
+          field[col][row] = null;
+        }
+      }
+    }
+  }
+
+  renderField();
+}
+
 //
 renderField();
 updateMoney();
