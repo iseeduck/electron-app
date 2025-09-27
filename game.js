@@ -107,14 +107,15 @@ function renderSellOptions(){
     const amount = inventory[crop];
     if (amount > 0) {
       const btn = document.createElement('button');
-      btn.textContent = 'Sell 1 ${crop} ($5)';
+      btn.textContent = `Sell 1 ${crop} ($5)`;
       btn.onclick = () =>{
         inventory[crop] --;
         money += 5;
         updateMoney();
         updateInventoryUI();
-        renderSellOptioins(); //refreshes the ui
+        renderSellOptions(); //refreshes the ui
       }
+      container.appendChild(btn); //appned the button
     }
     else {
         const label = document.createElement('div');
@@ -141,12 +142,17 @@ function renderField(){
           cellDiv.classList.add('fire');
         }
         else {
-        // THESE IMAGES NEED TO BE NAMED USING THIS FORMAT plants/{type}-{stage}.png
+        // CONSOLATED AND CORRECTeD IMAGE LOGIC
           const img = document.createElement('img');
-          img.src = 'plant/${plant.type}_${plant.stage}.png';
-          img.onerror = () => {
-            img.src = 'images/plants/sapling_allplants.png';
-          };
+          if (plant.stage == 0){
+            img.src = `images/plants/sapling_allplants.png`;
+          }
+          // otherwise, for stages 1 and 2, use the specific plant image.
+          else {
+            img.src = `images/plants/${plant.type}_${plant.stage}.png`;
+          }
+
+          img.alt = plant.type;
           cellDiv.appendChild(img);
         }
       }
