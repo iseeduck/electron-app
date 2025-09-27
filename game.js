@@ -158,7 +158,7 @@ function renderField(){
         // HARVEST IF PLANT IS READY
         if (plot && plot.stage == 3 && !plot.fire){
           inventory[plot.type]++;
-          field[col][row = null];
+          field[col][row] = null;
           renderField();
           updateInventoryUI();
           return;
@@ -206,9 +206,21 @@ function growPlants() {
 }
 //picks place fire
 function spawnFire() {
-  const col = Math.floor(Math.random() * cols);
-  const row = Math.floor(Math.random() * rows);
-  activeFires.push ({col, row, radius: 0, affectedCells: [] }); 
+  const plantCells = [];
+  for (let col =  0; col < cols;col++) {
+  for (let row = 0; row < rows;row++) {
+    const plant = field[col][row];
+    if (plant && !plant.burned && !plant.fire) {
+      plantCells.push({ col, row });
+      }
+    }
+  }
+
+  if (plantCells.length > 0) {
+    const targetCell = plantCells[Math.floor(Math.random() * plantCells.length)];
+    activeFires.push({ col: targetCell.col, row: targetCell.row, radius: 0, affectedCells: [] });
+
+  }
 }
 function growActiveFires(){
   const nextFires = [];
@@ -260,7 +272,7 @@ function updateBurningCells() {
       stillBurning.push(group);
     }
   }
-  burningcells = stillBurning;
+  burningCells = stillBurning;
   renderField();
 
 }
@@ -271,7 +283,7 @@ function updateCooldownCells() {
   for (let col = 0; col < cols; col++) {
     for (let row = 0; row < rows; row++) {
       const cell = field[col][row];
-      if (cell && cell.bruned && cell.cooldown > 0) {
+      if (cell && cell.burned && cell.cooldown > 0) {
         cell.cooldown--;
         if (cell.cooldown > 0) {
           stillCooling.push({ col, row });
