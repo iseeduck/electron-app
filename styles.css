@@ -155,8 +155,10 @@ flex-wrap: wrap;
 }
 
 .fire {
-    background-color: red;
-    animation: pulseFire 0.3s ease-in;
+    animation: pulseFire 0.4s infinite alternate;
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 @keyframes pulseFire {
