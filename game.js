@@ -53,36 +53,38 @@ function updateMoney(){
         }
     });
 
+    document.getElementById('tomato').addEventListener('click', () => {
+      if (isOpen) {
+        buySeed('tomato');
+      }
+    });
+    document.getElementById('strawberry').addEventListener('click', () => {
+      if (isOpen) {
+        buySeed('strawberries');
 
-    var myButton = document.getElementById('tomato');
-    myButton.addEventListener('click', function(){
-       // Assign an ID to your button
-      if (myButton && isOpen) {
-          myButton.addEventListener('click', buySeed('tomato'));
       }
     });
-    var myButton = document.getElementById('strawberry');
-      myButton.addEventListener('click', function(){
-       // Assign an ID to your button
-      if (myButton && isOpen) {
-          myButton.addEventListener('click', buySeed('strawberries'));
-      }
-    });
-    var myButton = document.getElementById('grapes');
-    myButton.addEventListener('click', function(){
-       // Assign an ID to your button
-      if (myButton && isOpen) {
-          myButton.addEventListener('click', buySeed('grapes'));
-      }
-    })
-    var myButton = document.getElementById('lettuce');
-    myButton.addEventListener('click', function(){
-       // Assign an ID to your button
-      if (myButton && isOpen) {
-          myButton.addEventListener('click', buySeed('lettuce'));
-      }
-    })
+   document.getElementById('grapes').addEventListener('click', () => {
+    if (isOpen) {
+      buySeed('grapes');
+     }
+   });
+   document.getElementById('lettuce').addEventListener('click', () => {
+    if (isOpen) {
+      buySeed('lettuce');
+    }
+   });
+
       
+const pondElement = document.getElementById('pond');
+const conatainerElement = document.getElementById('container');
+
+pondElement,addEventListener('click', () => {
+  isWatering = !isWatering; 
+  conatainerElement.classList.toggle('watering-cursor', isWatering);
+  pondElement.classList.toggle('active', isWatering);
+  
+});
 
 
 let fireAnimationState= 0;
