@@ -4,6 +4,9 @@ const rows = 10;
 
 let money = 100;
 let seeds = []; // makes queue of seeds
+let activFires = [];
+let burningCells = [];
+let isWatering = false;
 let inventory = {
   grapes: 0,
   strawberries: 0,
@@ -82,7 +85,20 @@ function updateMoney(){
       
 
 
-
+let fireAnimationState= 0;
+setInterval(() => {
+  // This toggelest the state to alternate between one and zero
+  fireAnimationState = (fireAnimationState + 1) % 2;
+  // Find all elements that currentl have the fire class
+  const fireElements = document.querySelectorAll('.fire');
+  fireElements.forEach(element => {
+    if (fireAnimationState === 0) {
+      element.style.backgrundImage = "url(images/Fire part one.png)";
+    } else {
+      element.style.backgroundImage = "url(images/fire part two.png)";
+    }
+  })
+}, 400); // Animation frame changes every 0.4 seconds
 
 
 function buySeed(type) {
@@ -169,7 +185,7 @@ function renderField(){
           updateInventoryUI();
           return;
         }
-        // PLANT IF EMPTY OR BURND
+        // PLANT IF EMPTY OR BURNED
         if (!isBurnedCooling && (!plot || plot.burned) && seeds.length > 0){
           field[col][row] = seeds.pop();
           renderField();
