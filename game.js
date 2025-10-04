@@ -153,13 +153,20 @@ function renderField(){
     for (let row = 0; row < rows; row++) {
       const cellDiv = document.createElement('div');
       cellDiv.classList.add('cell');
+      cellDiv.id = `cell-${col}-${row}`;
 
       const plant = field[col][row];
+
       if (plant) {
         if (plant.fire) {
           cellDiv.classList.add('fire');
         }
-        else {
+        else if (plant.burned) {
+          cellDiv.classList.add('burned');
+          if (plant.cooldow > 0) {
+            cellDiv.classList.add('cooling');
+          }
+        } else {
         // CONSOLATED AND CORRECTeD IMAGE LOGIC
           const img = document.createElement('img');
           if (plant.stage == 0){
@@ -178,6 +185,42 @@ function renderField(){
       cellDiv.onclick = () => {
         const plot = field[col][row];
 
+        if (isWatering) {
+          if (plot && plot.fire) {
+            const cellsToExtiguish = [{col, row}];
+            const neighbors = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+
+            for (const [dx, dy] of neighbors) {
+              const nx = col + dx;
+              const ny = row + dy;
+              if (nx >= 0 && nx < cols && ny >= 0 && my < rows) {
+                const neighborPlot = field[nx][ny];
+                if (neighborPlot && neighborPlot.fire){
+                  cellsToExtinguish.push({col: nx, row: ny});
+                }
+              }
+            }
+
+            for (let i = 0; i < Math.min(cellsToExtinguish.length, 4); i++){
+              const cell = cellsToExtinguish[i];
+              field[cell.col][cell.row] = { burned: true, cooldown: 5};
+
+              const splashedCellDiv = document.getElementById(`cell-${cell.col}-${cell.row}`);
+              if(splashedCellDiv) {
+                splashedCellDiv.classlist.remove('fire');
+                splashedCellDiv.classlist.add('splash');
+
+                setTimeout(() => {
+                  splashedCellDiv.classList.remove('splash');
+                }, 500);
+              }
+            }
+          isWatering = false;
+          containerElement.classList.remove('waterng-cursor');
+          pondElement.classList.remove('active');
+          }
+          return;
+        }
         const isBurnedCooling = plot && plot.burned && plot.cooldown > 0;
         // HARVEST IF PLANT IS READY
         if (plot && plot.stage == 3 && !plot.fire){
@@ -192,25 +235,7 @@ function renderField(){
           field[col][row] = seeds.pop();
           renderField();
         }
-      };
-
-
-      if (plant){
-        if (plant.fire) {
-          cellDiv.classList.add('fire');
-        } else if (plant.burned) {
-          cellDiv.classList.add('burned');
-          if (plant.cooldown > 0) {
-            cellDiv.classList.add('cooling');
-          }
-        } else {
-          const img = document.createElement('img');
-          img.src = `images/plants/${plant.type}_${plant.stage}.png`;
-          img.alt = plant.type;
-          cellDiv.appendChild(img);
-        }
-      }
-    
+      }; 
     colDiv.appendChild(cellDiv);
   }
   fieldDiv.appendChild(colDiv);
