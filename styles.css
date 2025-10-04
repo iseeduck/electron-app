@@ -155,13 +155,15 @@ flex-wrap: wrap;
 }
 
 .fire {
-    animation: pulseFire 0.4s infinite alternate;
-    background-size: 50px 50px;
-    background-repeat: no-repeat;
-    background-position: center;
+   background-image: url('images/Fire part one.png');
+   background-size: 100px 100px;
+   background-repeat: no-repeat;
+   background-position: 50% 18%;
 }
 
-@keyframes pulseFire {
-    from {  background: url('images/Fire part one.png') no-repeat center; }
-    to {  background: url('images/fire part two.png') no-repeat center; }
+#main-game-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
