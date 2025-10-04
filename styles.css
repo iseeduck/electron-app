@@ -167,3 +167,33 @@ flex-wrap: wrap;
     align-items: center;
     margin-top: 20px;
 }
+
+#pond {
+    width: 250px;
+    height: 250px;
+    background: url('images/pond.png') no-repeat center;
+    background-size: 250px 250px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    border-radius: 10px;
+}   
+
+
+#pond.active {
+    border: 3px solid rgb(0, 162, 255);
+}
+
+.watering-cursor {
+    cursor: url('images/watering_can.png'), auto;
+}
+
+.splash {
+    background: url('images/splash.png') no-repreat center !important;
+    background-size: 50px 50px !important;
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeOut {
+    from {opacity: 1; }
+    to {opacity: 0; }
+}
