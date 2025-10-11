@@ -187,7 +187,7 @@ function renderField(){
 
         if (isWatering) {
           if (plot && plot.fire) {
-            const cellsToExtiguish = [{col, row}];
+            const cellsToExtinguish = [{col, row}];
             const neighbors = [[-1, 0], [1, 0], [0, -1], [0, 1]];
 
             for (const [dx, dy] of neighbors) {
