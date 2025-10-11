@@ -164,7 +164,7 @@ flex-wrap: wrap;
 #main-game-area {
     display: flex;
     justify-content: left;
-    gap: 318px;
+    gap: 317px;
     align-items: center;
     margin-top: 20px;
 }
