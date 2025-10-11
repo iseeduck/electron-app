@@ -4,7 +4,7 @@ const rows = 10;
 
 let money = 100;
 let seeds = []; // makes queue of seeds
-let activFires = [];
+let activeFires = [];
 let burningCells = [];
 let isWatering = false;
 let inventory = {
@@ -79,7 +79,7 @@ function updateMoney(){
 const pondElement = document.getElementById('pond');
 const conatainerElement = document.getElementById('container');
 
-pondElement,addEventListener('click', () => {
+pondElement.addEventListener('click', () => {
   isWatering = !isWatering; 
   conatainerElement.classList.toggle('watering-cursor', isWatering);
   pondElement.classList.toggle('active', isWatering);
