@@ -349,3 +349,10 @@ function updateCooldownCells() {
 //
 renderField();
 updateMoney();
+
+
+setInterval(growPlants, 5000);
+setInterval(spawnFire, 2000);
+setInterval(growActiveFires, 1000);
+setInterval(updateBurningCells, 1000);
+setInterval(updateCooldownCells, 1000);
