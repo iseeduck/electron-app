@@ -53,12 +53,12 @@ function updateMoney(){
         }
     });
 
-    document.getElementById('tomato').addEventListener('click', () => {
+    document.getElementById('tomatoes').addEventListener('click', () => {
       if (isOpen) {
-        buySeed('tomato');
+        buySeed('tomatoes');
       }
     });
-    document.getElementById('strawberry').addEventListener('click', () => {
+    document.getElementById('strawberries').addEventListener('click', () => {
       if (isOpen) {
         buySeed('strawberries');
 
@@ -77,11 +77,11 @@ function updateMoney(){
 
       
 const pondElement = document.getElementById('pond');
-const conatainerElement = document.getElementById('container');
+const containerElement = document.getElementById('container');
 
 pondElement.addEventListener('click', () => {
   isWatering = !isWatering; 
-  conatainerElement.classList.toggle('watering-cursor', isWatering);
+  containerElement.classList.toggle('watering-cursor', isWatering);
   pondElement.classList.toggle('active', isWatering);
   
 });
@@ -95,7 +95,7 @@ setInterval(() => {
   const fireElements = document.querySelectorAll('.fire');
   fireElements.forEach(element => {
     if (fireAnimationState === 0) {
-      element.style.backgrundImage = "url(images/Fire part one.png)";
+      element.style.backgroundImage = "url(images/Fire part one.png)";
     } else {
       element.style.backgroundImage = "url(images/fire part two.png)";
     }
@@ -114,7 +114,7 @@ function buySeed(type) {
 
   function updateInventoryUI(){
     const inv = inventory;
-    document.getElementById('inventory-display').textContent = `Inventory: Grape(s): ${inv.grape} | Lettuce: ${inv.lettuce} | Tomato(es): ${inv.tomato} | Strawberries: ${inv.strawberry}`;
+    document.getElementById('inventory-display').textContent = `Inventory: Grape(s): ${inv.grapes} | Lettuce: ${inv.lettuce} | Tomato(es): ${inv.tomatoes} | Strawberries: ${inv.strawberries}`;
 
   }
 
@@ -163,7 +163,7 @@ function renderField(){
         }
         else if (plant.burned) {
           cellDiv.classList.add('burned');
-          if (plant.cooldow > 0) {
+          if (plant.cooldown > 0) {
             cellDiv.classList.add('cooling');
           }
         } else {
@@ -193,7 +193,7 @@ function renderField(){
             for (const [dx, dy] of neighbors) {
               const nx = col + dx;
               const ny = row + dy;
-              if (nx >= 0 && nx < cols && ny >= 0 && my < rows) {
+              if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
                 const neighborPlot = field[nx][ny];
                 if (neighborPlot && neighborPlot.fire){
                   cellsToExtinguish.push({col: nx, row: ny});
@@ -207,8 +207,8 @@ function renderField(){
 
               const splashedCellDiv = document.getElementById(`cell-${cell.col}-${cell.row}`);
               if(splashedCellDiv) {
-                splashedCellDiv.classlist.remove('fire');
-                splashedCellDiv.classlist.add('splash');
+                splashedCellDiv.classList.remove('fire');
+                splashedCellDiv.classList.add('splash');
 
                 setTimeout(() => {
                   splashedCellDiv.classList.remove('splash');
@@ -216,7 +216,7 @@ function renderField(){
               }
             }
           isWatering = false;
-          containerElement.classList.remove('waterng-cursor');
+          containerElement.classList.remove('watering-cursor');
           pondElement.classList.remove('active');
           }
           return;
@@ -246,7 +246,7 @@ function growPlants() {
   for (let col = 0; col <cols; col++) {
     for (let row = 0; row <rows; row++) {
       const plant = field [col][row];
-      if (plant && plant.stage < 2 && !plant.fire) {
+      if (plant && plant.stage >= 2 && !plant.fire) {
         plant.stage++; //make it grow one
       }
     }
