@@ -2,12 +2,13 @@
 
 
 body {
-    background-image: url('Grass Field Background.png');
-    background-size: cover;
+    background-image: url('images/Grass Field Background.png');
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     font-family: sans-serif;
+    opacity: 0.5;
 }
 
 div{
