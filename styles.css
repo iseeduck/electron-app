@@ -174,9 +174,9 @@ flex-wrap: wrap;
     width: 100%;
     max-width: 700px;
     /* slightly wider for brrreathing room */
-    /* top left bottom right  */
-    margin: 40px 60px 40px 2px;
-    /* vertical and horizontal centering */
+    /* top right bottom left  */
+    margin: 40px 10px 40px 1px;
+    /* vertical and horizont entering */
     gap: 17px;
     /* more visible space between columns */
     padding: 24px;
