@@ -162,6 +162,7 @@ flex-wrap: wrap;
     width: 100%;
     max-width: 700px;
     /* slightly wider for brrreathing room */
+    /* top left bottom right  */
     margin: 40px 60px 40px 2px;
     /* vertical and horizontal centering */
     gap: 17px;
