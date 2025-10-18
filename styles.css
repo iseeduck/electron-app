@@ -21,12 +21,25 @@ div{
 }
 
 #shop-menu button{
-    display: block;
+    display: flex;
+   align-items: center;
+   gap: 10px;
+    width: 220px;
     margin: 10px auto;
     font-size: 16px;
     padding: 6px 12px;
-    border-radius: 10px;
+    border-radius: 10px
+
 }
+
+
+#shop-menu button img {
+    width: 40px;
+    height: 50px;
+}
+
+
+
 
 #top-bar {
     display: flex;
@@ -117,6 +130,28 @@ flex-wrap: wrap;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 
 }
+
+
+#sell-menu button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 220px;
+    margin: 10px auto;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+#sell-menu button img {
+    width: 32px;
+    height: 32px;
+}
+
+
 #field{
     display: flex;
     flex-wrap:nowrap;
