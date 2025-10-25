@@ -242,7 +242,7 @@ flex-wrap: wrap;
 #main-game-area {
     display: flex;
     justify-content: left;
-    gap: 100px;
+    gap: 270px;
     align-items: center;
     margin-top: 20px;
 }

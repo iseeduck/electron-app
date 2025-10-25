@@ -378,7 +378,7 @@ function updateCooldownCells() {
 renderField();
 updateMoney();
 
-
+alert("Helpful Hints\n Fires can happen quite frequently, so you should make sure to have a watering can at the ready! \n Spread out your crops to have the best opportunity to grow them out!\n Click on the pond to quickly activate the watering can! Click once on the selected fire square in order to put it out, then rinse and repeat!")
 setInterval(growPlants, 4000);
 setInterval(spawnFire, 10000);
 setInterval(growActiveFires, 2000);
