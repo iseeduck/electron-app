@@ -55,7 +55,7 @@ function updateMoney(){
 
     document.getElementById('tomatoes').addEventListener('click', () => {
       if (isOpen) {
-        buySeed('tomatoes');
+        buySeed('tomato');
       }
     });
     document.getElementById('strawberries').addEventListener('click', () => {
@@ -104,9 +104,9 @@ setInterval(() => {
 
 
 function buySeed(type) {
-    if (money >= 10) {
+    if (money >= 5) {
       seeds.push({type, stage: 0});
-      money -= 10;
+      money -= 5;
       console.log("seed was bought");
       updateMoney();
     }
@@ -114,7 +114,7 @@ function buySeed(type) {
 
   function updateInventoryUI(){
     const inv = inventory;
-    document.getElementById('inventory-display').textContent = `Inventory: Grape(s): ${inv.grapes} | Lettuce: ${inv.lettuce} | Tomato(es): ${inv.tomatoes} | Strawberries: ${inv.strawberries}`;
+    document.getElementById('inventory-display').textContent = `Inventory: Grape(s): ${inv.grapes} | Lettuce: ${inv.lettuce} | Tomato(es): ${inv.tomato} | Strawberries: ${inv.strawberries}`;
 
   }
 
@@ -125,10 +125,10 @@ function renderSellOptions(){
     const amount = inventory[crop];
     if (amount > 0) {
       const btn = document.createElement('button');
-      btn.textContent = `Sell 1 ${crop} ($5)`;
+      btn.textContent = `Sell 1 ${crop} ($10)`;
       btn.onclick = () =>{
         inventory[crop] --;
-        money += 5;
+        money += 10;
         updateMoney();
         updateInventoryUI();
         renderSellOptions(); //refreshes the ui
@@ -223,7 +223,7 @@ function renderField(){
         }
         const isBurnedCooling = plot && plot.burned && plot.cooldown > 0;
         // HARVEST IF PLANT IS READY
-        if (plot && plot.stage == 3 && !plot.fire){
+        if (plot && plot.stage >= 2 && !plot.fire){
           inventory[plot.type]++;
           field[col][row] = null;
           renderField();
@@ -246,7 +246,7 @@ function growPlants() {
   for (let col = 0; col <cols; col++) {
     for (let row = 0; row <rows; row++) {
       const plant = field [col][row];
-      if (plant && plant.stage >= 2 && !plant.fire) {
+      if (plant && plant.stage < 2 && !plant.fire) {
         plant.stage++; //make it grow one
       }
     }
@@ -255,51 +255,79 @@ function growPlants() {
 }
 //picks place fire
 function spawnFire() {
-  const plantCells = [];
-  for (let col =  0; col < cols;col++) {
-  for (let row = 0; row < rows;row++) {
-    const plant = field[col][row];
-    if (plant && !plant.burned && !plant.fire) {
-      plantCells.push({ col, row });
+
+  let currentFireCount = 0;
+  for (let c = 0; r < rows; r++) {
+    for (let r = 0; r < rows; r++) {
+      if (field[c][r] && field[c][r].fire) {
+        currentFireCount++;
       }
     }
   }
 
-  if (plantCells.length > 0) {
+  if (currentFireCount < 4) {
+      const plantCells = [];
+      for (let col =  0; col < cols;col++) {
+      for (let row = 0; row < rows;row++) {
+        const plant = field[col][row];
+        if (plant && !plant.burned && !plant.fire) {
+          plantCells.push({ col, row });
+          }
+        }
+      }
+
+       if (plantCells.length > 0) {
     const targetCell = plantCells[Math.floor(Math.random() * plantCells.length)];
     activeFires.push({ col: targetCell.col, row: targetCell.row, radius: 0, affectedCells: [] });
 
   }
+    }
+
+ 
 }
 function growActiveFires(){
   const nextFires = [];
+  let currentFireCount = 0;
+  for (let c = 0; c < cols; c++) {
+    for (let r = 0; r < rows; r++) {
+      if (field[c][r] && field[c][r].fire) {
+        currentFireCount++;
+      }
+    }
+  }
+ 
   for (const fire of activeFires) {
-    const {col, row, radius, affectedCells} = fire;
+    const { col, row, radius, affectedCells } = fire;
+
+
     for (let dx = -radius; dx <= radius; dx++) {
       for (let dy = -radius; dy <= radius; dy++) {
-        if (Math.abs(dx) + Math.abs(dy) === radius){
-          const x = col +dx;
+        if (Math.abs(dx) + Math.abs(dy) === radius ) {
+          const x = col + dx;
           const y = row + dy;
-        
 
-        if (x >= 0 && x < cols && y >= 0 && y < rows) {
-          const plant = field[x][y];
-          if (plant) {
+
+          if (x >= 0 && x < cols && y >= 0 && y < rows) {
+            const plant = field[x][y];
+            if( plant && !plant.fire && currentFireCount < 4 ) {
             plant.fire = true;
-            affectedCells.push({x,y}) // accumulate
+            affectedCells.push({ x, y });
+            currentFireCount++; 
+            }
           }
         }
       }
     }
-  }
-    if (radius <4) {
-      nextFires.push ({col, row, radius: radius +1, affectedCells}); // pass it forward
+  
 
-    } else {
-      //after max radius, store full fire aresa to burn
-      burningCells.push({cells: affectedCells, timeLeft: 5});
+  if (radius < 4) {
+    nextFires.push({col, row, radius: radius +1, affectedCells });
+   }
+    else {
+      burningCells.push({ cells: affectedCells, timeleft: 5});
     }
   }
+
   activeFires = nextFires;
   renderField();
 }
