@@ -351,8 +351,8 @@ renderField();
 updateMoney();
 
 
-setInterval(growPlants, 5000);
-setInterval(spawnFire, 2000);
-setInterval(growActiveFires, 1000);
-setInterval(updateBurningCells, 1000);
-setInterval(updateCooldownCells, 1000);
+setInterval(growPlants, 4000);
+setInterval(spawnFire, 10000);
+setInterval(growActiveFires, 2000);
+setInterval(updateBurningCells, 3000);
+setInterval(updateCooldownCells, 2000);
