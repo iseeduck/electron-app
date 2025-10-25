@@ -257,7 +257,7 @@ function growPlants() {
 function spawnFire() {
 
   let currentFireCount = 0;
-  for (let c = 0; r < rows; r++) {
+  for (let c = 0; c < cols; c++) {
     for (let r = 0; r < rows; r++) {
       if (field[c][r] && field[c][r].fire) {
         currentFireCount++;
